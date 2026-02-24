@@ -9,27 +9,40 @@
 <body>
     <input type="text" id="tarefa" placeholder="Tarefa">
     <button id="add" onclick="listanova()">Adicionar</button>
-    <ul id="lista"></ul>
-    <ul id="del"></ul>
+    <ul id="lista" class="listas"></ul>
+    <ul id="del" class="listas"></ul>
 
     
     <script>
-        const botao = document.getElementById("add")
-        const lista = document.getElementById("lista")
-        const input = document.getElementById("tarefa")
+    const lista = document.getElementById("lista");
+    const input = document.getElementById("tarefa");
 
-        function listanova(){
-            const novoItem = document.createElement("li");
-            novoItem.textContent= input.value;
-            lista.appendChild(novoItem);
+    function listanova(){
+        if(input.value.trim() === "") return;
 
-            const deletebutton = document.createElement("button");
-            deletebutton.textContent= ("Delete")
-            del.appendChild(deletebutton);
+        const novoItem = document.createElement("li");
 
+        // Criar span para o texto
+        const texto = document.createElement("span");
+        texto.textContent = input.value;
 
-            input.value = "";
-        }
-    </script>
+        // Criar botão delete
+        const deletebutton = document.createElement("button");
+        deletebutton.textContent = "Delete";
+
+        // Função para remover o item
+        deletebutton.onclick = function() {
+            lista.removeChild(novoItem);
+        };
+
+        // Adiciona texto e botão dentro do mesmo li
+        novoItem.appendChild(texto);
+        novoItem.appendChild(deletebutton);
+
+        lista.appendChild(novoItem);
+
+        input.value = "";
+    }
+</script>
 </body>
 </html>
