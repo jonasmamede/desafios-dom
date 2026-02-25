@@ -7,10 +7,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <input type="text" id="tarefa" placeholder="Tarefa">
-    <button id="add" onclick="listanova()">Adicionar</button>
-    <ul id="lista" class="listas"></ul>
-    <ul id="del" class="listas"></ul>
+        <header>
+            <input type="text" id="tarefa" placeholder="Tarefa" required>
+
+            <input id="horario" type="time" required>          
+            
+            <button id="add"  onclick="listanova()">Adicionar</button>
+        </header>
+
+        <main>
+            <ul id="lista" class="listas"></ul>
+            
+        </main>
 
     
     <script>
@@ -22,20 +30,20 @@
 
         const novoItem = document.createElement("li");
 
-        // Criar span para o texto
+        
         const texto = document.createElement("span");
         texto.textContent = input.value;
 
-        // Criar botão delete
+        
         const deletebutton = document.createElement("button");
+        deletebutton.classList.add("add")
         deletebutton.textContent = "Delete";
 
-        // Função para remover o item
+        
         deletebutton.onclick = function() {
             lista.removeChild(novoItem);
         };
 
-        // Adiciona texto e botão dentro do mesmo li
         novoItem.appendChild(texto);
         novoItem.appendChild(deletebutton);
 
