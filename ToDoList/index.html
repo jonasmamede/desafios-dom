@@ -10,9 +10,10 @@
         <header>
             <input type="text" id="tarefa" placeholder="Tarefa" required>
 
-            <input id="horario" type="time" required>          
+            <input type="time" id="tempo">       
             
             <button id="add"  onclick="listanova()">Adicionar</button>
+            
         </header>
 
         <main>
@@ -24,6 +25,7 @@
     <script>
     const lista = document.getElementById("lista");
     const input = document.getElementById("tarefa");
+    const tempo = document.getElementById("tempo")
 
     function listanova(){
         if(input.value.trim() === "") return;
@@ -34,9 +36,11 @@
         const texto = document.createElement("span");
         texto.textContent = input.value;
 
+        const horario = document.createElement("span");
+        horario.textContent = tempo.value + 'h';
         
         const deletebutton = document.createElement("button");
-        deletebutton.classList.add("add")
+        deletebutton.classList.add("addlista")
         deletebutton.textContent = "Delete";
 
         
@@ -45,12 +49,16 @@
         };
 
         novoItem.appendChild(texto);
+        novoItem.appendChild(horario)
         novoItem.appendChild(deletebutton);
 
         lista.appendChild(novoItem);
 
+        document.getElementById("tempo").value = "";
         input.value = "";
     }
+
+    
 </script>
 </body>
 </html>
